@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class FlickrController extends HomeController
 {
     /**
-     * @Route("/flickr/{startDate}")
+     * @Route("/flickr/{startDate}/{endDate}")
      */
     public function getPhotoAction($startDate, $endDate)
     {
@@ -19,7 +19,7 @@ class FlickrController extends HomeController
         $end = new \DateTime($endDate);
         $end = $end->modify('+1 day');
 
-        $html = '<html><body>';
+        $html = ''; //'<html><body>';
 
         $interval = new \DateInterval('P1D');
         $dateRange = new \DatePeriod($start, $interval, $end);
@@ -62,7 +62,7 @@ class FlickrController extends HomeController
                 $remaining -= $photoNum;
             }
         //}
-        $html .= '</body></html>';
+        //$html .= '</body></html>';
 
         //print_r ($html);
 
@@ -70,6 +70,11 @@ class FlickrController extends HomeController
         return new Response(
             $html
         );
+
+//        return $this -> render(
+//            'default/sample.html.twig',
+//            array('html' => $html)
+//        );
 
     }
 }
