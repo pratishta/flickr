@@ -27,7 +27,7 @@ class HomeController extends Controller
 
         $form = $this->createFormBuilder()
             -> add('startDate', 'date')
-            // -> add('endDate', 'date')
+            -> add('endDate', 'date')
             -> add('save', 'submit', array('label' => 'Submit'))
             ->getForm();
 
@@ -35,15 +35,16 @@ class HomeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $date = $form->get('startDate')->getData();
+            $startDate = $form->get('startDate')->getData(); //used to be date
+            $endDate = $form->get('endDate')->getData();
 
-            // $dateStamp = $date->date;
-            var_dump($date);
+            var_dump($endDate); // used to be date, will return object and obj->date will be the right answer but it won't show up
 
             // logic
 
             return $this->redirect($this->generateUrl('flickr', array(
-                'startDate' => $date->date,
+                'startDate' => $startDate->format('Y-m-d'),
+                'endDate' => $endDate->format('Y-m-d')
             )));
 
         }

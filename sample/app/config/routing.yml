@@ -7,6 +7,6 @@ lucky_number:
     defaults:   {_controller: AppBundle:Lucky:number}
 
 flickr:
-    path:       /flickr/{startDate}
+    path:       /flickr/{startDate}/{endDate}
     defaults:   {_controller: AppBundle:Flickr:getPhoto}
 
